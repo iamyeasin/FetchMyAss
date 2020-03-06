@@ -14,12 +14,14 @@ function shuntasi(kipathaise, sender, sendresponse ){
 
 		   if(x != null && st.startsWith(pre) ){
 		    
-		    // console.log( " "+ x.innerHTML + " " + x);
+		    //console.log( " "+ x.innerHTML + " " + x);
 		    formData.append(  'id', cnt );
-		    formData.append(  'product_name', x.innerHTML );
-		    formData.append(  'product_link', x );
-		    formData.append(  'page_link', url );
-			sendMyAss(formData);
+		    formData.append(  'product_name', x.innerHTML+"" );
+		    formData.append(  'product_link', st );
+		    formData.append(  'page_link', url+"" );
+			//sendMyAss(formData);
+			// sendresponse({product_name: x.innerHTML+"", product_link: st , page_link: url+""});
+			chrome.runtime.sendMessage({'send':'sendtoserver',product_name: x.innerHTML+"", product_link: st , page_link: url+""});
 		 }
 		});
 
@@ -30,12 +32,14 @@ function shuntasi(kipathaise, sender, sendresponse ){
 
 		   if(x != null && st.startsWith(pre) ){
 		    
-		    // console.log( " "+ x.innerHTML + " " + x);
+		    //console.log( " "+ x.innerHTML + " " + x);
 		    formData.append(  'id', cnt );
-		    formData.append(  'product_name', x.innerHTML );
-		    formData.append(  'product_link', x );
-		    formData.append(  'page_link', url );
-			sendMyAss(formData);
+		    formData.append(  'product_name', x.innerHTML+"" );
+		    formData.append(  'product_link', st );
+		    formData.append(  'page_link', url+"" );
+			//sendMyAss(formData);
+			//sendresponse({product_name: x.innerHTML+"", product_link: st , page_link: url+""});
+			chrome.runtime.sendMessage({'send':'sendtoserver',product_name: x.innerHTML+"", product_link: st , page_link: url+""});
 		 }
 		});
 
@@ -46,21 +50,23 @@ function shuntasi(kipathaise, sender, sendresponse ){
 
 		   if(x != null && st.startsWith(pre) ){
 		    
-		    // console.log( " "+ x.innerHTML + " " + x);
+		   // console.log( " "+ x.innerHTML + " " + x);
 		    formData.append(  'id', cnt );
-		    formData.append(  'product_name', x.innerHTML );
-		    formData.append(  'product_link', x );
-		    formData.append(  'page_link', url );
-			sendMyAss(formData);
+		    formData.append(  'product_name', x.innerHTML+"" );
+		    formData.append(  'product_link', st );
+		    formData.append(  'page_link', url+"" );
+			//sendMyAss(formData);
+			//sendresponse({product_name: x.innerHTML+"", product_link: st , page_link: url+""});
+			chrome.runtime.sendMessage({'send':'sendtoserver',product_name: x.innerHTML+"", product_link: st , page_link: url+""});
 		 }
 
 		});
 		alert("All Data saved");
 	}
-	else if (kipathaise.from === "getinfo") {
-		getMyAss(kipathaise.url);
-		sendresponse({farewell: "Saved"});
-	}
+	// else if (kipathaise.from === "getinfo") {
+	// 	// getMyAss(kipathaise.url);
+	// 	sendresponse({farewell: "Showed"});
+	// }
 }
 
 // function addModal() {
@@ -77,7 +83,7 @@ function getMyAss(urls){
     url: urls,
     type: 'GET',
     success: function(obj){
-    	alert("Product : " + obj["Product"] + "\nPage: " + obj["Page"] );
+    	alert(obj["Product"] + "\n" + obj["Page"] );
     	// addModal();
     },
      error: function (xhr, ajaxOptions, thrownError) {
@@ -97,11 +103,12 @@ function sendMyAss(formData){
           data: formData,
           processData: false,
           contentType: false,
+          dataType:'jsonp',
           success: function(gotIt,status){
-            ///console.log("Data Saved Successfully to the Model");
+            console.log("Data Saved Successfully to the Model");
           },
           error : function(){
-            // console.log('Something is Wrong with the server');
+            console.log('Something is Wrong with the server');
           }
         })
 }
