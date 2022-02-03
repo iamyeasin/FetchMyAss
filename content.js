@@ -55,7 +55,7 @@ function shuntasi(kipathaise, sender, sendresponse ){
 		    formData.append(  'product_name', x.innerHTML+"" );
 		    formData.append(  'product_link', st );
 		    formData.append(  'page_link', url+"" );
-			//sendMyAss(formData);
+			//sendMyAsset(formData);
 			//sendresponse({product_name: x.innerHTML+"", product_link: st , page_link: url+""});
 			chrome.runtime.sendMessage({'send':'sendtoserver',product_name: x.innerHTML+"", product_link: st , page_link: url+""});
 		 }
@@ -64,7 +64,7 @@ function shuntasi(kipathaise, sender, sendresponse ){
 		alert("All Data saved");
 	}
 	// else if (kipathaise.from === "getinfo") {
-	// 	// getMyAss(kipathaise.url);
+	// 	// getMyAsset(kipathaise.url);
 	// 	sendresponse({farewell: "Showed"});
 	// }
 }
@@ -75,7 +75,7 @@ function shuntasi(kipathaise, sender, sendresponse ){
 // }
 
 
-function getMyAss(urls){
+function getMyAsset(urls){
 	urls = urls+"";
 	// console.log(urls);
 
@@ -95,7 +95,7 @@ function getMyAss(urls){
 }
 
 
-function sendMyAss(formData){
+function sendMyAsset(formData){
 	
 	$.ajax({
           type: 'POST',
